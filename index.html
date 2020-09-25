@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-
+<!-- This is an Semantic HTML change-->
+<nav>
     <div class="menu">
+        
         <ul>
             <li><a href="/">Home Page</a></li>
             <li><a href="/about.html">About</a></li>
@@ -17,13 +19,19 @@
             <li><a href="https://google.com">Google</a></li>
         </ul>
     </div>
-
+</nav>
+<!--This is an A11y change which takes to the main content of current page-->
+<a class="skip" href="#maincontent">Skip to main content</a>
     <div class="hero">
+        <!-- This is an SEO Change-->
+        <title>Personal Budget Management</title>
         <h1>Personal Budget</h1>
         <h2>A personal-budget management app</h2>
     </div>
-
-    <div class="container center">
+    <!--This is an Semantic HTML Change where main is added-->
+    <main id="maincontent" class="container center">
+        <!--This is an SEO Change where alt with description is added-->
+        <img src="bg.png" alt="budget" width="100" and height="200">
 
         <div class="page-area">
 
@@ -93,13 +101,19 @@
 
         </div>
 
-    </div>
+    </main>
 
-    <div class="bottom">
+
+    <!--This is an Semantic HTML Change-->
+    <footer class="bottom">
         <div class="center">
             All rights reserved &copy; Fabio Nolasco
+            <!-- This is an SEO change where we ignore the connection 
+                and doesn't help improve domain authority of an external site-->
+            <li><a href="https://github.com" rel="nofollow">Useful Resource</a></li>
         </div>
-    </div>
+    </footer>
+    
 
 </body>
 </html>
