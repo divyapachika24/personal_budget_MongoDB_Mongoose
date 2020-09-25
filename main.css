@@ -74,7 +74,7 @@ div.hero h2 {
 }
 
 .bottom {
-    height: 50px;
+    height: 60px;
     background-color: #b4c6f0;
     padding: 40px;
 }
@@ -97,18 +97,11 @@ div.hero h2 {
     }
 }
 
-a#skip, a#skip:hover, a#skip:visited
+a#skip
 {
 position:absolute;
 top:-500px;
 width:1px;
 height:1px;
-overFlow:hidden;
 
-}
-a#skip:active, a#skip:focus
-{
-position:static;
-width=auto;
-height:auto   
 }
