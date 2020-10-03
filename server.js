@@ -1,25 +1,15 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const fs = require('fs');
+'use strict';
 
 app.use('/', express.static('public'));
 
-const budget = {
-   myBudget: [
-    {
-      title: 'Eat out',
-      budget: 25
-    },
-    {
-      title: 'Rent',
-      budget: 375
-    },
-    {
-      title: 'Grocery',
-      budget: 110
-    },
 
-]};
+let rawdata = fs.readFileSync('fetchdata.json');
+let budget = JSON.parse(rawdata);
+console.log(budget);
 
 app.get('/hello', (req,res) =>{
     res.send('Hello World!');
@@ -32,3 +22,4 @@ app.get('/budget', (req,res) =>{
 app.listen(port, () =>{
     console.log(`Example app listening at http://localhost:${port}`)
 });
+
