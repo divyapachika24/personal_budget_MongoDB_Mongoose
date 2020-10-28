@@ -116,15 +116,7 @@
                  {
                     data: [],
                     backgroundColor: [
-                        '#ffcd56',
-                        '#ff6384',
-                        '#36a2eb',
-                        '#fd6b19',
-                        '#9933ff',
-                        '#ff66ff',
-                        '#00cc66',
-
-                    ],
+                    ],    
                 }
             ],
             labels: []
@@ -142,9 +134,10 @@
             axios.get('/budget')
             .then(function (res) {
                 console.log(res);
-                for (var i=0;i < res.data.myBudget.length; i++){
-                    dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
-                    dataSource.labels[i] = res.data.myBudget[i].title;
+                for (var i=0;i < res.data.length; i++){
+                    dataSource.datasets[0].data[i] = res.data[i].budget;
+                    dataSource.datasets[0].backgroundColor[i] = res.data[i].color;
+                    dataSource.labels[i] = res.data[i].title;
                 }
                 createChart();
             });
@@ -189,44 +182,28 @@
         <script>
             //getting data from json for the D3JS chart
             var color;
-            var dataSourceD3js = {
-                datasets: [
-                    {
-                        data: [],
-                        backgroundColor: [
-                            '#e6e600',
-                            '#6666ff',
-                            '#00cc00',
-                            '#fd6b19',
-                            '#ff3399',
-                            '#990033',
-                            '#cc66ff',
-                           
-                        ]
-                    }],
+            data1 = [];
+            label1 = [];
+            backgroundColor=[];
 
-                
-                labels: []
-
-            };
             function getBudgetD3js() {
                 axios.get('/budget')
                     .then(function (res) {
                         console.log(res);
-                        for (var i = 0; i < res.data.myBudget.length; i++) {
-                            dataSourceD3js.datasets[0].data[i] = res.data.myBudget[i].budget;
-                            dataSourceD3js.labels[i] = res.data.myBudget[i].title;
+                        for (var i = 0; i < res.data.length; i++) {
+                            data1.push(res.data[i].budget);
+                            label1.push(res.data[i].title);
+                            backgroundColor.push(res.data[i].color);
                         }
                         color = d3.scale.ordinal()
-                            .domain(dataSourceD3js.labels)
-                            .range(dataSourceD3js.datasets[0].backgroundColor);
+                            .domain(label1)
+                            .range(backgroundColor);
 
                         function mapD3Data() {
                             var labels = color.domain();
-                            budget_list = dataSourceD3js.datasets[0].data;
                             var k = 0;
                             return labels.map(function (label) {
-                                return { label: label, value: budget_list[k++] }
+                                return { label: label, value: data1[k++] };
                             });
                         }
                         donut(mapD3Data());
